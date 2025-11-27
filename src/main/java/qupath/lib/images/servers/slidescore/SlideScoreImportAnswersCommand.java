@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine.Command;
 import qupath.lib.geom.Point2;
-import qupath.lib.gui.ExtensionClassLoader;
 import qupath.lib.gui.QuPathGUI;
 import qupath.lib.gui.dialogs.Dialogs;
 import qupath.lib.gui.extensions.Subcommand;
@@ -173,14 +172,7 @@ public class SlideScoreImportAnswersCommand implements Runnable, Subcommand {
                 logger.error("Getting answers failed", ex);
             }
         } catch (java.lang.NoSuchMethodError ex) {
-            Dialogs.showErrorMessage("Slide Score Answers Import", "It seems that multiple versions of the Slide Score plugin are loaded. Can you please remove older versions of the plugin from the extensions directory and leave only qupath-extension-slidescore-0.3.1.jar");
-            try {
-                Thread.sleep(3000);
-                var extensionClassLoader = ExtensionClassLoader.getInstance();;
-                var dir = extensionClassLoader.getExtensionsDirectory();
-                Desktop.getDesktop().open(dir.toFile());
-            } catch (Exception e) {
-            }
+            Dialogs.showErrorMessage("Slide Score Answers Import", "It seems that multiple versions of the Slide Score plugin are loaded. Can you please remove older versions of the plugin from the extensions directory and leave only qupath-extension-slidescore-0.5.0.jar");
         }
     }
 
@@ -195,8 +187,8 @@ public class SlideScoreImportAnswersCommand implements Runnable, Subcommand {
 			if (setNames)
 				annotation.setName(name);
             if (color != null)
-                annotation.setColorRGB(color);
-			imageData.getHierarchy().addPathObject(annotation);
+                annotation.setColor(color);
+			imageData.getHierarchy().addObject(annotation);
 			return;
 		}
 
@@ -245,9 +237,9 @@ public class SlideScoreImportAnswersCommand implements Runnable, Subcommand {
                 if (setNames)
                     annotation.setName(name);
                 if (color != null)
-                    annotation.setColorRGB(color);
+                    annotation.setColor(color);
 
-                imageData.getHierarchy().addPathObject(annotation);
+                imageData.getHierarchy().addObject(annotation);
             }
         }
     }
