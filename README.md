@@ -4,7 +4,7 @@ This is a plugin for the image analysis software [QuPath](https://qupath.github.
 
 # Installation
 
-Just drag and drop the jar over a running QuPath instance.
+Download the latest `qupath-extension-slidescore-[version].zip` file from [releases](https://github.com/SlideScore/qupath-extension-slidescore/releases) and unzip it into your `extensions` directory. 
 
 # Building
 
