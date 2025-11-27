@@ -19,6 +19,6 @@ val platform = Utils.currentPlatform()
 dependencies {
     implementation(project(":qupath-core"))
     implementation(project(":qupath-gui-fx"))
-    implementation(libs.jna)
-    implementation(libs.qupath.fxtras)
+    implementation(libs.picocli)
+    implementation("io.tus.java.client:tus-java-client:0.5.0")
 }
